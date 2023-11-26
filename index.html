@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>De1Aur0'Blog - insomniatic</title><meta name="author" content="De1Aur0"><meta name="copyright" content="De1Aur0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Don&#39;t assume there&#39;s Null ahead just because of a thin mist">
+<meta property="og:type" content="website">
+<meta property="og:title" content="De1Aur0&#39;Blog">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="De1Aur0&#39;Blog">
+<meta property="og:description" content="Don&#39;t assume there&#39;s Null ahead just because of a thin mist">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp">
+<meta property="article:author" content="De1Aur0">
+<meta property="article:tag" content="blog,ctf,pentest">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp"><link rel="shortcut icon" href="/cover/2.ico"><link rel="canonical" href="http://example.com/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'De1Aur0\'Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-26 18:34:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="De1Aur0'Blog"><span class="site-name">De1Aur0'Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">De1Aur0'Blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/valuesleep" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:859545241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD"><img class="post-bg" src="https://img0.baidu.com/it/u=530637055,4152035669&amp;fm=253&amp;fmt=auto?w=800&amp;h=800" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="劫持LD_PRELOAD"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD">劫持LD_PRELOAD</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-23T10:31:25.000Z" title="发表于 2023-11-23 18:31:25">2023-11-23</time></span></div><div class="content">LD_PRELOAD简介LD_PRELOAD 是linux下的一个环境变量。用于动态链接库的加载，在动态链接库的过程中他的优先级是最高的。类似于 .user.ini 中的 auto_prepend_file
+1234静态链接：在程序运行之前就把各个目标模块以及需要的库函数 链接成了一个可执行程序，之后不再拆开装入时动态链接：源程序编译后得到的一组目标模块，在装入内存时，边装入边链接。 运行时动态链接： 源程序编译后得到的目标模块，在程序执行的过程中需要用到时才对他进行连接
+LD_PRELOAD劫持 LD_PRELOAD， 用于动态链接库的加载的环境变量(linux).  它允许你定义在程序运行之前优先加载的动态链接库，那么我们就可以在自己定义的动态链接库中装入恶意函数。 
+CTF应用[buuctf2019]rce me
+这是一道过滤字母数字的rce题
+取反加url编码绕过pre_match的过滤 可以查看phpinfo()信息和上马  
+脚本如下：
+1234567891011121314151617import urllib.parsedef func(a):    input_str ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/09/24/Final/" title="KPCTF Final"><img class="post-bg" src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KPCTF Final"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/09/24/Final/" title="KPCTF Final">KPCTF Final</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-24T06:51:42.000Z" title="发表于 2023-09-24 14:51:42">2023-09-24</time></span></div><div class="content">团队的情况
+
+
+
+
+auro的题解webCrazyLogin
+根据经验进来先注册登录
+
+根据提示尝试注册名字为admin的账号 看能不能实现账号覆盖
+
+成功后，点击获取flag
+ezsqlSQL注入 
+空格 union被禁，无回显还有一些sql查询词汇禁 可以大小写绕过
+爆库：‘Or&#x2F;&#x2F;mid(database(),1,1)&#x3D;&#x2F;&#x2F;‘z’#ctf、、、、、ctftraining
+&#39;Or/**/mid((select/**/TABLE_NAME/**/from/**/inforMation_schema.TABLES/**/where/**/TABLE_SCHEMA/**/=/**/database()/**/limit/**/0,1/**/),1,1)/**/=/**/&#39;a&#39;#爆表：users、、、、、、flag
+username=1&#39;Or/**/mid((select/**/COLUMN_NAME/**/from/**/inforMation_schema.COLUMNS/**/where/**/TABL ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023"><img class="post-bg" src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kunpengCTF2023"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023">kunpengCTF2023</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-20T15:37:25.000Z" title="发表于 2023-09-20 23:37:25">2023-09-20</time></span></div><div class="content">kunpengctf write upwebezssrf有include()函数伪协议看index.php源码
+
+代码审计下若比较绕过secret
+
+参考链接https://blog.csdn.net/unexpectedthing/article/details/120393571
+
+
+ezser&#x2F;hint 看一下刚开始以为要解开注释 试了很多类似39.108.86.101:10001?a=Flag&amp;b=*/&amp;c=/*&amp;d=read的错误方法后面找到查看注释的方法 参考链接https://www.cnblogs.com/Aurora-M/p/15655736.html利用 PHP 内置类中的 ReflectionMethod 类中的 getDocComment() 方法来读取Flag 类里面各个函数的注释
+
+reserverezRE
+
+
+调试得q骲flagq髇{q7oq骿8l3xq骎ka6tq驲66ohq骬7b8cq骦4cadq驠3p11q驜747e衠驨5}删减得flag{q7o8l3xka6t66oh7b8c4cad3p11747e5}
+REez
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找"><img class="post-bg" src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谷歌黑客语法与漏洞寻找"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找">谷歌黑客语法与漏洞寻找</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-17T06:38:11.000Z" title="发表于 2023-07-17 14:38:11">2023-07-17</time></span></div><div class="content">浏览器：用来检索展示web信息资源搜索引擎：根据一定的策略、运用特定的计算机程序从互联网上采集信息另类的搜索语法：Google HackingGoogle搜索语法：
+
+实例演示：
+不一样的搜索引擎Fofa 鹰图 钟馗之眼用于查询资产资源Shodan:用于收集联网设备信息
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场"><img class="post-bg" src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DVWA靶场"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场">DVWA靶场</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-15T15:24:22.000Z" title="发表于 2023-05-15 23:24:22">2023-05-15</time></span></div><div class="content">XSSdom：xss利用：?default&#x3D;alert('xss')  &#x2F;&#x2F;要考虑服务端核心代码和前端代码  一  绕过对&lt;script的过滤1.利用Url截断机制加#号url中有一个字符为#，该字符后的数据不会发送到服务器端，从而绕过服务端过滤，构造连接&#x2F;dvwa&#x2F;vulnerabilities&#x2F;xss_d&#x2F;?#default&#x3D;alert('xss')2.用img标签或其他标签的特性去执行js代码，比如img标签的onerror事件，构造连接3.使用svg的方法&#x2F;dvwa&#x2F;vulnerabilities&#x2F;xss_d&#x2F;?default&#x3D;&lt;svg onload&#x3D;alert(“xss”)&gt;  二  要求default的值必须为select选择菜单中的值‘#’符号绕过即可  三  前端对做了URL编码处理
+reflect：一  $name &#x3D; str_replace( ‘', '', $_GET[ 'name' ] );  1 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/15/LitCTf/" title="LitCTF"><img class="post-bg" src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LitCTF"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/15/LitCTf/" title="LitCTF">LitCTF</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-15T15:13:25.000Z" title="发表于 2023-05-15 23:13:25">2023-05-15</time></span></div><div class="content">web学到的东西不多也小结一下请求头友链：https://www.cnblogs.com/flyhufangfang/p/15349158.html
+
+
+
+Flag点击就送！要以admin身份登录 存在cookieflask的session伪造  
+vim yyds
+vim缓存linux环境中打开index.php.swp
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/04/25/%E9%B2%B2%E9%B9%8F%E6%9D%AF%E4%B8%AA%E4%BA%BAwp/" title="鲲鹏杯个人wp"><img class="post-bg" src="/cover/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="鲲鹏杯个人wp"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/25/%E9%B2%B2%E9%B9%8F%E6%9D%AF%E4%B8%AA%E4%BA%BAwp/" title="鲲鹏杯个人wp">鲲鹏杯个人wp</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-25T09:54:07.000Z" title="发表于 2023-04-25 17:54:07">2023-04-25</time></span></div><div class="content">解题情况
+
+WEB1.Pentext扫端口，进80端口的；扫网站后缀，各个网页都看一下进 &#x2F;test.php这个很奇怪用post方法下载各个文件，在c.php中找到配置文件，发现了相关数据库名及密码
+
+找到用户名密码
+
+&#x2F;phpmy页面中使用密码进入其数据库，找到用户名及密码（flag1）
+再到
+
+这里登录
+
+用文件包含上传木马
+
+
+load=/uploaded_images/fput.png&amp;continue=continue&amp;cmd=phpinfo();这里可以执行系统命令cat flag2反弹shell
+
+
+
+还是老问题反弹不上(这里要注意把bash语句url编码在上传)开摆…..网上找到root的账号密码参考文章(31条消息) https://blog.csdn.net/qq_45300786/article/details/106572959直接本地登录cat flag
+
+2.signin_for_web
+再Base64解码
+3.Ezpop找链子逆推链子D(get_flag())-&gt;B(_call())-&gt;A(_invoke() ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/04/09/pentext/" title="pentext"><img class="post-bg" src="https://tse3-mm.cn.bing.net/th/id/OIP-C.ebY-0DBNNatGeYuVQdnWrwAAAA?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="pentext"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/09/pentext/" title="pentext">pentext</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-09T09:26:11.000Z" title="发表于 2023-04-09 17:26:11">2023-04-09</time></span></div><div class="content">信息搜集1.用端口扫描工具扫一下2.通过浏览器访问对应靶场http服务（http://ip:http端口号）
+攻击流程
+ 注册个账号看看
+
+注意到?id&#x3D;2 试试修改?id&#x3D;1 
+
+
+打开bp用该漏洞修改管理员密码（这里猜一下管理员用户名admin）登录 发现可以进行upload
+
+
+ 尝试发现只允许图片 .phtml格式的文件名没被过滤上传木马 用蚁剑连接
+
+
+权限提升接下来就要准备提权了，看了下内核版本没找到什么可用漏洞。翻了下&#x2F;home发现有个john用户，里面有一个叫password的文件，说不定是root密码，因此我们可以先想办法提权到john上。注意到&#x2F;home&#x2F;john中有一个叫做toto的二进制文件：
+发现uid&#x3D;john，这里就可以采用环境变量劫持的方式取得用户shell了。
+
+反弹个shell给kali环境变量劫持：
+1234echo &quot;/bin/bash&quot; &gt; /tmp/idchmod +x /tmp/idexport PATH=/tmp:$PATH./toto
+
+
+第一步提权成 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/04/06/upload/" title="upload"><img class="post-bg" src="https://img.zcool.cn/community/01a62a5b3af22aa80120b95938f0bb.jpg@1280w_1l_2o_100sh.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="upload"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/06/upload/" title="upload">upload</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-06T08:58:52.000Z" title="发表于 2023-04-06 16:58:52">2023-04-06</time></span></div><div class="content">文件上传原理在文件上传的功能处，若服务端脚本语言未对上传的文件进行严格验证和过滤，导致恶意用户上传恶意的脚本文件时，就有可能获取执行服务端命令的能力，这就是文件上传漏洞。
+文件上传漏洞高危触发点相册 头像上传 视频 照片分享附件上传（论坛发帖、邮箱）文件管理器注：如果移动端也存在类似的操作的话，那么相同的原理，也存在文件上传漏洞的风险。
+upload——labsless1上传phpinfo.php
+
+改上传以.jpg或png、gif后缀的用burpsuit抓包再更改后缀
+
+less2要求上传image&#x2F;jpeg格式的文件在HTTP协议消息头中，使用Content-Type来表示请求和响应中的媒体类型信息burpsuit抓包更改消息头
+
+
+
+less3
+
+设置了deny_ext参数 判断参数是否存在于file_ext中存在则上传出错 如下后缀的文件都是可以被解析的phtml、php3、php4、php5 更改为其中一个没被过滤的
+
+less4源码可以看到基本过滤完了除了.htaccess 
+
+.htaccess可以把.jpg解析成php先上传.htaccess再上传.jpg
+l ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/04/06/unserialize/" title="unserialize"><img class="post-bg" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.i1oG6DGuWAYRDrQkpvRZyQHaE7?w=253&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.5&amp;pid=1.7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="unserialize"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/04/06/unserialize/" title="unserialize">unserialize</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-04-06T07:47:29.000Z" title="发表于 2023-04-06 15:47:29">2023-04-06</time></span></div><div class="content">序列化的定义序列化：把对象转化为可传输的字节序列过程称为序列化。反序列化：把字节序列还原为对象的过程称为反序列化。
+为什么要序列化？如果光看定义我想你很难一下子理解序列化的意义，那么我们可以从另一个角度来推导出什么是序列化, 那么究竟序列化的目的是什么？其实序列化最终的目的是为了对象可以跨平台存储，和进行网络传输。而我们进行跨平台存储和网络传输的方式就是IO，而我们的IO支持的数据格式就是字节数组。因为我们单方面的只把对象转成字节数组还不行，因为没有规则的字节数组我们是没办法把对象的本来面目还原回来的，所以我们必须在把对象转成字节数组的时候就制定一种规则（序列化），那么我们从IO流里面读出数据的时候再以这种规则把对象还原回来（反序列化）。如果我们要把一栋房子从一个地方运输到另一个地方去，序列化就是我把房子拆成一个个的砖块放到车子里，然后留下一张房子原来结构的图纸，反序列化就是我们把房子运输到了目的地以后，根据图纸把一块块砖头还原成房子原来面目的过程。
+必须知道的魔术方法：12345678910111213141516171819202122232425262728293031__con ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic2.zhimg.com/80/v2-523c835e745b2473a3a1804e12337935_720w.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">De1Aur0</div><div class="author-info__description">Don't assume there's Null ahead just because of a thin mist</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/valuesleep" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:859545241@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD"><img src="https://img0.baidu.com/it/u=530637055,4152035669&amp;fm=253&amp;fmt=auto?w=800&amp;h=800" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="劫持LD_PRELOAD"/></a><div class="content"><a class="title" href="/2023/11/23/%E5%8A%AB%E6%8C%81LD-PRELOAD/" title="劫持LD_PRELOAD">劫持LD_PRELOAD</a><time datetime="2023-11-23T10:31:25.000Z" title="发表于 2023-11-23 18:31:25">2023-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/24/Final/" title="KPCTF Final"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KPCTF Final"/></a><div class="content"><a class="title" href="/2023/09/24/Final/" title="KPCTF Final">KPCTF Final</a><time datetime="2023-09-24T06:51:42.000Z" title="发表于 2023-09-24 14:51:42">2023-09-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kunpengCTF2023"/></a><div class="content"><a class="title" href="/2023/09/20/kunpengCTF2023/" title="kunpengCTF2023">kunpengCTF2023</a><time datetime="2023-09-20T15:37:25.000Z" title="发表于 2023-09-20 23:37:25">2023-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="谷歌黑客语法与漏洞寻找"/></a><div class="content"><a class="title" href="/2023/07/17/%E8%B0%B7%E6%AD%8C%E9%BB%91%E5%AE%A2%E8%AF%AD%E6%B3%95%E4%B8%8E%E6%BC%8F%E6%B4%9E%E5%AF%BB%E6%89%BE/" title="谷歌黑客语法与漏洞寻找">谷歌黑客语法与漏洞寻找</a><time datetime="2023-07-17T06:38:11.000Z" title="发表于 2023-07-17 14:38:11">2023-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场"><img src="https://www.pexels.com/zh-cn/photo/1809644/" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DVWA靶场"/></a><div class="content"><a class="title" href="/2023/05/15/DVWA%E9%9D%B6%E5%9C%BA/" title="DVWA靶场">DVWA靶场</a><time datetime="2023-05-15T15:24:22.000Z" title="发表于 2023-05-15 23:24:22">2023-05-15</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/LitCTF/" style="font-size: 1.1em; color: #999">LitCTF</a> <a href="/tags/unserialize/" style="font-size: 1.1em; color: #999">unserialize</a> <a href="/tags/php/" style="font-size: 1.1em; color: #999">php</a> <a href="/tags/pentext/" style="font-size: 1.1em; color: #999">pentext</a> <a href="/tags/upload/" style="font-size: 1.1em; color: #999">upload</a> <a href="/tags/rce/" style="font-size: 1.1em; color: #999">rce</a> <a href="/tags/sqli-lab/" style="font-size: 1.5em; color: #99a9bf">sqli-lab</a> <a href="/tags/web/" style="font-size: 1.1em; color: #999">web</a> <a href="/tags/%E9%B2%B2%E9%B9%8F%E6%9D%AF/" style="font-size: 1.3em; color: #99a1ac">鲲鹏杯</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">七月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/04/"><span class="card-archive-list-date">四月 2023</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">三月 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">19</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-26T10:34:17.311Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By De1Aur0</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
